@@ -20,6 +20,9 @@ Mod list:
 
 ## Changelog
 
+**0.0.4**
+Fixed LFS
+
 **0.0.3**
 ```diff
 - BuildCraft
