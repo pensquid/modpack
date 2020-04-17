@@ -18,7 +18,6 @@ Mod list:
   - OptiFine (don't pretend you don't know what this is)
   - XaerosWorldMap (adds a map and waypoints)
 
-
 ## Changelog
 
 **0.0.3**
