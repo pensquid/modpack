@@ -10,6 +10,14 @@ Mod list:
 
 ## Changelog
 
+**0.0.3**
+```diff
+- BuildCraft
+- Computronics
++ IndrustrialCraft
++ OptiFine
+```
+
 **0.0.2**
 ```diff
 + OpenSecurity
