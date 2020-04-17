@@ -1,0 +1,15 @@
+banned-ips.json
+banned-players.json
+crash-reports/
+eula.txt
+forge-*-universal.jar
+libraries/
+logs/
+minecraft_server*.jar
+OpenComputersMod-*.so
+ops.json
+snapshots-server/
+usercache.json
+usernamecache.json
+whitelist.json
+world*/
