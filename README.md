@@ -8,6 +8,7 @@ Mod list:
   - OpenScreens (screens for said computers)
   - IndustrialCraft (electricity and machines)
   - OpenSecurity (security systems and more)
+  - Computroniccs (retro computer tech)
 - Utility
   - AppleSkin (shows hunger info)
   - Hwyla (shows info on what you're looking at)
