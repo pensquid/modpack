@@ -1,4 +1,9 @@
-minecraft/logs/
 natives/
+minecraft/logs/
 minecraft/options.txt
 minecraft/optionsof.txt
+minecraft/saves/
+minecraft/OpenComputersMod*.dylib
+minecraft/usercache.json
+minecraft/usernamecache.json
+*.xwmc
