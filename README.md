@@ -8,6 +8,7 @@ Mod list:
   - OpenScreens (screens for said computers)
   - IndustrialCraft (electricity and machines)
   - OpenSecurity (security systems and more)
+  - Computronics (cool old computers)
 - Utility
   - AppleSkin (shows hunger info)
   - Hwyla (shows info on what you're looking at)
@@ -18,8 +19,15 @@ Mod list:
   - OptiFine (don't pretend you don't know what this is)
   - XaerosWorldMap (adds a map and waypoints)
   - OldCombat (pre-1.9 combat)
+  - Gravestones (gravestones when you die so items don't despawn)
 
 ## Changelog
+
+**0.0.6**
+```diff
++ Computronics
++ Gravestones
+```
 
 **0.0.5**
 ```diff
