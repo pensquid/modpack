@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+        with:
+          lfs: true
       - name: Build ZIP
         run: |
           cd client/

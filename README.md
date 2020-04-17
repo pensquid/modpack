@@ -17,8 +17,17 @@ Mod list:
   - Neat (shows healthbars)
   - OptiFine (don't pretend you don't know what this is)
   - XaerosWorldMap (adds a map and waypoints)
+  - OldCombat (pre-1.9 combat)
 
 ## Changelog
+
+**0.0.5**
+```diff
++ OldCombat
+```
+
+**0.0.4**
+Fixed LFS
 
 **0.0.3**
 ```diff

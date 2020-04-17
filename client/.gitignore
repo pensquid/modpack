@@ -6,4 +6,4 @@ minecraft/saves/
 minecraft/OpenComputersMod*.dylib
 minecraft/usercache.json
 minecraft/usernamecache.json
-*.xwmc
+minecraft/XaeroWorldMap/
