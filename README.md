@@ -20,7 +20,10 @@ Mod list:
   - OldCombat (pre-1.9 combat)
 
 ## Changelog
-
+**0.0.6**
+```diff
++ Computronics
+```
 **0.0.5**
 ```diff
 + OldCombat
