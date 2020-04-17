@@ -17,11 +17,16 @@ Mod list:
   - MouseTweaks (adds new mouse controls in the inventory)
   - Neat (shows healthbars)
   - OptiFine (don't pretend you don't know what this is)
-  - XaerosWorldMap (adds a map and waypoints)
+  - XaerosWorldMap + XaerosMinimap (adds a map and waypoints)
   - OldCombat (pre-1.9 combat)
   - Gravestones (gravestones when you die so items don't despawn)
 
 ## Changelog
+
+**0.0.7**
+```diff
++ XaerosMinimap
+```
 
 **0.0.6**
 ```diff
