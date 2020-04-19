@@ -22,6 +22,13 @@ local function assert_eq(want, got)
   end
 end
 
+local function reset_coords()
+  t.c.x = 0
+  t.c.y = 0
+  t.c.z = 0
+  t.c.ori = 0
+end
+
 -- indent print by 2 spaces while func executes
 local function with_indent(func)
   local bp = print
@@ -79,7 +86,17 @@ describe('t.moveTo', function()
   end)
 
   it('should change its coordanites correctly when going back', function()
-    t.c = {x = 0, y = 0, z = 0, ori = 0}
+    reset_coords()
+    t.back()
+    assert_eq({x = 0, y = 0, z = 1, ori = 0}, t.c)
+  end)
+
+  it('forward and back should cancel out', function()
+    reset_coords()
+
+    t.forward()
+    assert_eq({x = 0, y = 0, z = -1, ori = 0}, t.c)
+
     t.back()
     assert_eq({x = 0, y = 0, z = 0, ori = 0}, t.c)
   end)
