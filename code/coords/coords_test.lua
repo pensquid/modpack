@@ -1,4 +1,4 @@
-package.path = package.path .. ';./test_helpers/?.lua'
+package.path = package.path .. ';../test_helpers/?.lua'
 local t = require('coords')
 local pprint = require('pprint')
 
