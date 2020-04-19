@@ -120,7 +120,7 @@ w.y = %q (want number)
 w.z = %q (want number)
 ]]):format(w.x, w.y, w.z))
   end
-  ori = ori or t.ori
+  ori = ori or c.ori
 
   while y < c.y do moveWith(t.down, robot.swingDown) end
   while y > c.y do moveWith(t.up,   robot.swingUp) end
