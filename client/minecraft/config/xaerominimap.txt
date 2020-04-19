@@ -77,7 +77,8 @@ entityNametags:false
 minimapTextAlign:0
 showAngles:false
 waypointsMutualEdit:true
-interface:dummy:0:0:true:false:false:false
+compass:true
+interface:dummy:0:36:true:false:false:false
 interface:dummy:0:10000:true:false:false:false
 interface:dummy:0:0:false:false:true:false
 interface:dummy:0:36:true:false:false:false

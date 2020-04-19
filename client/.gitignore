@@ -7,3 +7,7 @@ minecraft/OpenComputersMod*.dylib
 minecraft/usercache.json
 minecraft/usernamecache.json
 minecraft/XaeroWorldMap/
+minecraft/shaderpacks/
+minecraft/optionsshaders.txt
+minecraft/XaeroWaypoints/
+minecraft/crash-reports/
