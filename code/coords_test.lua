@@ -77,4 +77,10 @@ describe('t.moveTo', function()
     t.moveTo({3, 4, -3, 1})
     assert_eq({x = 3, y = 4, z = -3, ori = 1}, t.c)
   end)
+
+  it('should change its coordanites correctly when going back', function()
+    t.c = {x = 0, y = 0, z = 0, ori = 0}
+    t.back()
+    assert_eq({x = 0, y = 0, z = 0, ori = 0}, t.c)
+  end)
 end)

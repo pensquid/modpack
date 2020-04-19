@@ -21,12 +21,20 @@ local c = {
 }
 t.c = c
 
--- The delta for different orientations.
-local delta = {
+-- The delta for different orientations (going forward).
+local deltaForward = {
   [0] = function() c.z = c.z - 1 end,
   [1] = function() c.x = c.x + 1 end,
   [2] = function() c.z = c.z + 1 end,
   [3] = function() c.x = c.x - 1 end
+}
+
+-- The delta for different orientations (going backward).
+local deltaBackwards = {
+  [0] = function() c.z = c.z + 1 end,
+  [1] = function() c.x = c.x - 1 end,
+  [2] = function() c.z = c.z - 1 end,
+  [3] = function() c.x = c.x + 1 end
 }
 
 function t.turnRight()
@@ -53,10 +61,10 @@ local function move(moveFn, fn)
 end
 
 -- Move functions
-t.forward = move(robot.forward, function() delta[c.ori]() end)
-t.back    = move(robot.back, function() delta[c.ori]() end)
-t.up      = move(robot.up,   function() c.y = c.y + 1 end)
-t.down    = move(robot.down, function() c.y = c.y - 1 end)
+t.forward = move(robot.forward, function() deltaForward[c.ori]() end)
+t.back    = move(robot.back,    function() deltaBackwards[c.ori]() end)
+t.up      = move(robot.up,      function() c.y = c.y + 1 end)
+t.down    = move(robot.down,    function() c.y = c.y - 1 end)
 
 --- Needed for converting the orientation back and forth to strings.
 -- if a key does not exist an error is thrown.
