@@ -9,6 +9,7 @@ Mod list:
   - IndustrialCraft (electricity and machines)
   - OpenSecurity (security systems and more)
   - Computronics (cool old computers)
+  - BuildCraft (pipes and stuff)
 - Utility
   - AppleSkin (shows hunger info)
   - Hwyla (shows info on what you're looking at)
@@ -20,8 +21,19 @@ Mod list:
   - XaerosWorldMap + XaerosMinimap (adds a map and waypoints)
   - OldCombat (pre-1.9 combat)
   - Gravestones (gravestones when you die so items don't despawn)
+  - ForgeMultipart (block and building magic)
+  - FastLeafDecay (makes leaves decay as soon as trees are broken)
+  - InventoryTweaks (inventory management and sorting)
 
 ## Changelog
+
+**0.1.0** Added some lua scripts
+```diff
++ ForgeMultipart
++ BuildCraft
++ FastLeafDecay
++ InventoryTweaks
+```
 
 **0.0.7**
 ```diff
