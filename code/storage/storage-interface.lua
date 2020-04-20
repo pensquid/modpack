@@ -122,6 +122,8 @@ function env.get(item, amount)
     moveTo(location[1].x, location[1].y, location[1].z)
     inv.suckFromSlot(sides.down, location[2], amount)
   end
+
+  moveTo(0,0,0)
 end
 
 -- Put item into the database, and into an empty chest.
