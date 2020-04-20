@@ -1,5 +1,7 @@
 -- mock for https://ocdoc.cil.li/api:robot to be used in tests.
+if _r then return _r end
 local r = {}
+_r = r
 
 local ret_true = function()
   return true
@@ -17,5 +19,13 @@ r.turnLeft  = function() end
 r.swing     = function() end
 r.swingUp   = function() end
 r.swingDown = function() end
+
+r.inv = {}
+r.slot = 1
+
+function r.select(slot)
+  r.slot = slot
+  return slot
+end
 
 return r

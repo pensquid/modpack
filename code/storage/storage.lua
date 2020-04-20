@@ -2,34 +2,6 @@ local robot = require('robot')
 local component = require('component')
 local inv = component.inventory_controller
 
-local chests = {
-  {
-    x = 0,
-    y = 0,
-    z = -1,
-  },
-
-  {
-    x = 0,
-    y = 0,
-    z = -2,
-  }
-}
-
-
--- itemid -> array {
---   {chest_pointer, slot, count}
---   {chest_pointer, slot, count},
---   ...
---   }
-local locations = {
-  ['minecraft:stone'] = {
-    {chests[1], 1, 63},
-    {chests[1], 2, 31},
-    {chests[2], 1, 15}
-  }
-}
-
 -- Represents a minecraft chest (single or double)
 -- NOTE: If the chest is manipulated outside of this API, our database will become out of sync.
 -- to remedy this you can call chest:rescan() when the chest items have changed.
@@ -47,8 +19,13 @@ chest:new {
     {'minecraft:stone', 31}, -- 31 stone in slot 2
     ...
   },
+  invsize = 54,
 }
 ]]
+
+local function min(x, y)
+  if x > y then return y else return x end
+end
 
 function chest:new(t)
   t.slots = t.slots or {}
@@ -66,7 +43,7 @@ end
 function chest:put(internal_slot, amount)
   local info = inv.getStackInInternalSlot(internal_slot)
   if info == nil then
-    return nil, 'oopsie woopsie no item in internal slot ' .. tostring(internal_slot)
+    return nil, 'no item in internal slot ' .. tostring(internal_slot)
   end
 
   if info['size'] < amount then
@@ -75,22 +52,28 @@ function chest:put(internal_slot, amount)
 
   local slots_with_space = {}
 
+  local space_needed = amount
+
   -- find space in our inventory, we decrement amount with each space found.
   for slot=1,self.invsize do
     local slot_info = inv.getStackInSlot(self.side, slot)
     if self.slots[slot] == nil then
-      amount = amount - 64
+      space_needed = space_needed - 64 -- items never stack more then 64
       table.insert(slots_with_space, {slot, 64})
       break
-    elseif slot_info['size'] < slot_info['maxSize'] then
-      amount  = amount - (slot_info['maxSize'] - slot_info['size'])
-      table.insert(slots_with_space, slot)
-      if amount <= 0 then break end
+    elseif
+      slot_info
+      and slot_info['name'] == info['name']
+      and slot_info['size'] < slot_info['maxSize'] then
+
+      space_needed  = space_needed - (slot_info['maxSize'] - slot_info['size'])
+      table.insert(slots_with_space, {slot, slot_info['maxSize'] - slot_info['size']})
+      if space_needed <= 0 then break end
     end
   end
 
-  if amount > 0 then
-    return nil, ('oopsie!!! no space in chest %s, need %d more slots'):format(info['name'], amount)
+  if space_needed > 0 then
+    return nil, ('no space in chest %s, need %d more slots'):format(info['name'], amount)
   end
 
   -- we have space! deposit the items and change our internal state to reflect the deposits.
@@ -102,10 +85,15 @@ function chest:put(internal_slot, amount)
 
   for _, x in ipairs(slots_with_space) do
     local slot, free_space = x[1], x[2]
-    local ok, err = inv.dropIntoSlot(self.side, slot, free_space)
+    local to_drop = min(free_space, amount)
+    local ok, err = inv.dropIntoSlot(self.side, slot, to_drop)
     if not ok then return nil, err end
+
+    -- update amount with the change
+    amount = amount - to_drop
+
     -- success! update our db of the chest's contents.
-    if self.slots[slot] == nil then
+    if not self.slots[slot] then
       self.slots[slot] = {info['name'], free_space}
     else
       self.slots[slot][2] = self.slots[slot][2] + free_space
@@ -134,7 +122,7 @@ end
 function chest:slots_with(item_id)
   local slots = {}
   for slot, item in pairs(self.slots) do
-    if item[1] == item_id then
+    if item and item[1] == item_id then
       -- NOTE: we return the index for self.slots, NOT a pointer to it
       -- TODO: maybe returning a pointer would make an easier API?
       table.insert(slots, slot)

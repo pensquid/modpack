@@ -101,10 +101,7 @@ describe('chest:rescan', function()
       },
     }
     local ok, err = chest:rescan()
-    if not ok then
-      print('ERROR: ' .. err)
-      return
-    end
+    if not ok then error(err) end
 
     assert_eq({
         {'minecraft:stone', 12},
@@ -120,7 +117,7 @@ describe('chest:rescan', function()
     }
     local ok, err = chest:rescan()
     if ok then
-      print('ERROR: expected "no inventory", got ok')
+      error('expected "no inventory", got ok')
     end
   end)
 end)
@@ -132,7 +129,7 @@ describe('chest:slots_with', function()
       side = sides.top,
       slots = {
         {'minecraft:stone', 32},
-        nil,
+        false,
         {'minecraft:stone', 30},
       },
       invsize = 54,
@@ -150,23 +147,30 @@ describe('chest:put', function()
       side = sides.bottom,
       slots = {
         {'minecraft:stone', 32},
-        nil,
+        false,
         {'minecraft:stone', 30},
       },
       invsize = 54,
     }
 
+    inv.external = {
+      size = 54,
+      {name = 'minecraft:stone', size = 32, maxSize = 64},
+      {name = 'minecraft:stone', size = 30, maxSize = 64},
+    }
+
     inv.internal = {
       size = 16,
-      {
-        name = 'minecraft:stone',
-        size = 64,
-      }
+      {name = 'minecraft:stone', size = 64, maxSize = 64},
     }
 
     local ok, err = chest:put(1, 60)
-    if not ok then
-      print(err)
-    end
+    if not ok then error(err) end
+
+    assert_eq({
+        size = 54,
+        {name = 'minecraft:stone', size = 64, maxSize = 64},
+        {name = 'minecraft:stone', size = 58, maxSize = 64},
+      }, inv.external)
   end)
 end)
