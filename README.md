@@ -27,6 +27,10 @@ Mod list:
 
 ## Changelog
 
+**0.1.2** Add a missing dependency
+
+**0.1.1** Fix BuildCraft version
+
 **0.1.0** Added some lua scripts
 ```diff
 + ForgeMultipart
