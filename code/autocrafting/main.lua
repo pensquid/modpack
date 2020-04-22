@@ -1,4 +1,7 @@
 local autocraft = require('autocrafting')
+local storage  = require('storage') -- TODO: Use
+
+-- TODO persist added recipes.
 local recipes = require('recipes')
 
 local env = {}
@@ -33,7 +36,16 @@ env.craft = function(itemid)
     io.write('recipe for ' .. itemid .. ' not found, would you like to import it? (y/n) ')
     local response = io.read()
     if response == 'y' then
-      env.addRecipe{itemid, interactive = true}
+      io.write('set up recipe in inventory, or enter table? (1/2) ')
+      local r = io.read()
+      if r == '1' then
+        local recipe = autocraft.importRecipe()
+        table.insert(recipes, recipe)
+      elseif r == '2' then
+        env.addRecipe{itemid, interactive = true}
+      else
+        error('must be 1 or 2 (got ' .. tostring(r) .. ')')
+      end
     end
   end
 end
