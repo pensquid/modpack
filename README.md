@@ -1,3 +1,7 @@
+> 🚩 **This project is archived!** 🚩
+> 
+> *The PwnSquad Minecraft server has been discontinued. We may revisit it later!*
+
 # PwnSquad Modpack
 
 Download the latest version of this modpack from the [releases page](https://github.com/kognise/pwnsquad-modpack/releases).
